@@ -1,6 +1,4 @@
-<?php 
+<?php  
     session_start();
-
 ?>
-
-<p><?php echo $_SESSION["usuario"]; ?></p>
+<h1>Usuario: <?php echo $_SESSION["usuario"]; ?></h1>

@@ -76,13 +76,29 @@
 	<script src="js/main.js"></script>
     
     <script>
-        var dados = $('form').serialize();
-        $.ajax({
-            type: "POST",
-            url: "login.php",
-            data: dados,
-            async: false
-        }).then(sucess, fail) 
+        $('#form').submit(function(e){
+            e.preventDefault();
+            var dados = $('#form').serialize();
+            alert(dados);
+            $.ajax({
+                type: "POST",
+                url: "php/login.php",
+                data: dados,
+                async: false
+            }).done(function(retorno) {
+                alert( "success" );
+                alert(retorno);
+                /* window.location.href = "php/home.html"; //Faz com que seja possivel clickar para trás na história do browser e ir para a página anterior */
+                window.location.replace("php/home.php"); //Substituí a pagina atual e ao clickar para ir para trás na história, a página inicial não está acessível (foi substituída na história).
+                
+                /* window.open("php/home.html");//O navegador abr uma janela nova (sem perder a janela de origem) */
+                
+            }).fail(function() {    
+                alert( "error" );
+            }).always(function() {
+                alert( "complete" );
+            });     
+        });
     </script>
     
 </body>
