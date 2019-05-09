@@ -2,8 +2,11 @@
     session_start();
     
     include_once("conexao.php");
+    
+    $mensagem = ""; 
 
     if(isset($_POST["email"])){
+        
         $email = $_POST["email"];
         $senha = $_POST["senha"];
         
@@ -15,14 +18,14 @@
         }else{
             while($usuario = mysqli_fetch_assoc($query)){
                 if($email != $usuario["email"]){
-                    header("location: ../index.html");
+                    
                     $mensagem = "Usuario ou senha inválidos!";
-                    echo $mensagem;
                 }else{
                     $_SESSION["usuario"] = $usuario["nome"];
-                    header("location: ../php/home.php");
+                    $mensagem = "Login efetuado com sucesso!";
                 }
             }
         }
     }
+    echo $mensagem;
 ?>
