@@ -448,7 +448,12 @@ iframe {
   transform: translateY(-50%);
   left: 0;
 }
-
-#msg-erro{
-    color: red;
+.msg-erro {
+  background-color:red;
+  display: none;
+}
+.msg-erro p {
+    color: white;
+    font-size: 13px;
+    text-align: center;
 }
