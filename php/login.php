@@ -3,12 +3,14 @@
     
     include_once("conexao.php");
     
-    $mensagem = ""; 
+    
 
     if(isset($_POST["email"])){
         
         $email = $_POST["email"];
         $senha = $_POST["senha"];
+        
+        $retorno = false;
         
         $comandoSQL = "SELECT * FROM usuarios WHERE email = '{$email}' AND senha = '{$senha}'";
         
@@ -17,15 +19,17 @@
             echo "Falha na consulta ao banco de dados!";
         }else{
             while($usuario = mysqli_fetch_assoc($query)){
-                if($email != $usuario["email"]){
-                    
-                    $mensagem = "Usuario ou senha inválidos!";
+                if ($email == $usuario["email"] or $senha = $usuario["senha"]){
+                    global $retorno;
+                    $retorno = true;
+                    $_SESSION["usuario"] = $usuario["email"];
                 }else{
-                    $_SESSION["usuario"] = $usuario["nome"];
-                    $mensagem = "Login efetuado com sucesso!";
+                    global $retorno;
+                    $retorno = false;
                 }
             }
         }
+        echo $retorno;
     }
-    echo $mensagem;
+    
 ?>

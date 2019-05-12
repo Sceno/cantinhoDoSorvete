@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<title>Login V6</title>
+	<title>Login - Cantinho do Sorvete</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form id="form" class="login100-form validate-form" action="php/login.php" method="post">
+				<form id="form" class="login100-form validate-form" method="post">
 					<span class="login100-form-title p-b-70">
 						Bem vindo!
 					</span>
@@ -57,6 +57,9 @@
 					</div>
                     
                     <p class="txt2">Esqueceu a senha?</p>
+                    <div>
+                        <p id="msg-erro"></p>
+                    </div>
 				</form>
 			</div>
 		</div>
@@ -86,18 +89,20 @@
                 data: dados,
                 async: false
             }).done(function(retorno) {
-                alert( "success" );
                 alert(retorno);
-                /* window.location.href = "php/home.html"; //Faz com que seja possivel clickar para trás na história do browser e ir para a página anterior */
-                window.location.replace("php/home.php"); //Substituí a pagina atual e ao clickar para ir para trás na história, a página inicial não está acessível (foi substituída na história).
                 
-                /* window.open("php/home.html");//O navegador abr uma janela nova (sem perder a janela de origem) */
+                if (retorno){
+                    /* window.location.href = "php/home.html"; //Faz com que seja possivel clickar para trás na história do browser e ir para a página anterior */
+                    window.location.replace("php/home.php");   //Substituí a pagina atual e ao clickar para ir para trás na história, a página inicial não está acessível (foi substituída na história).
+                    /* window.open("php/home.html");//O navegador abr uma janela nova (sem perder a janela de origem) */
+                }else{
+                    alert("Login ou senha incorretos!");
+                    $('#msg-erro').html(mensagem);
+                }
                 
             }).fail(function() {    
-                alert( "error" );
-            }).always(function() {
-                alert( "complete" );
-            });     
+                alert( "Erro!" );
+            })
         });
     </script>
     
