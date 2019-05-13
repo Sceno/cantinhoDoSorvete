@@ -452,13 +452,10 @@ iframe {
   display: none;
 }
 .msg-erro p {
-  color: white;
-  font-size: 15px;
-  text-align: center;
+    color: white;
+    font-size: 15px;
+    text-align: center;
 }
 
-#divImagemUsuario{
-  border: 250px solid red;
-}
 
 

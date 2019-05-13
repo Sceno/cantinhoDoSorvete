@@ -1,8 +1,4 @@
-
-
-<?php include_once("verificaSessao.php"); ?>
-
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 	<title>Login - Cantinho do Sorvete</title>
@@ -98,6 +94,7 @@
                 async: false
             }).done(function(retorno) {
                 if (retorno){
+                    alert("retorno" + retorno);
                     /* window.location.href = "php/home.html"; //Faz com que seja possivel clickar para trás na história do browser e ir para a página anterior */
                     window.location.replace("index.php");   //Substituí a pagina atual e ao clickar para ir para trás na história, a página inicial não está acessível (foi substituída na história).
                     /* window.open("php/home.html");           //O navegador abr uma janela nova (sem perder a janela de origem) */

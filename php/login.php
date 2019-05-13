@@ -2,6 +2,8 @@
     session_start();
     
     include_once("conexao.php");
+    
+    
 
     if(isset($_POST["email"])){
         
@@ -20,7 +22,7 @@
                 if ($email == $usuario["email"] and $senha = $usuario["senha"]){
                     global $retorno;
                     $retorno = true;
-                    $_SESSION["usuario_id"] = $usuario["usuario_id"];
+                    $_SESSION["usuario"] = $usuario["nome_usuario"];
                 }else{
                     global $retorno;
                     $retorno = false;

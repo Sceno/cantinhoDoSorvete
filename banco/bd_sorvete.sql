@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bd_sorvete` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bd_sorvete`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
 -- Host: localhost    Database: bd_sorvete
@@ -77,7 +79,7 @@ DROP TABLE IF EXISTS `grupo_de_funcionalidades`;
 CREATE TABLE `grupo_de_funcionalidades` (
   `grupo_func_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`grupo_func_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +88,7 @@ CREATE TABLE `grupo_de_funcionalidades` (
 
 LOCK TABLES `grupo_de_funcionalidades` WRITE;
 /*!40000 ALTER TABLE `grupo_de_funcionalidades` DISABLE KEYS */;
-INSERT INTO `grupo_de_funcionalidades` VALUES (1),(2);
+INSERT INTO `grupo_de_funcionalidades` VALUES (1);
 /*!40000 ALTER TABLE `grupo_de_funcionalidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +137,7 @@ CREATE TABLE `perfil` (
   PRIMARY KEY (`perfil_id`),
   KEY `fk_perfil_grupo_de_funcionalidades1_idx` (`grupo_func_id`),
   CONSTRAINT `fk_perfil_grupo_de_funcionalidades1` FOREIGN KEY (`grupo_func_id`) REFERENCES `grupo_de_funcionalidades` (`grupo_func_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +146,7 @@ CREATE TABLE `perfil` (
 
 LOCK TABLES `perfil` WRITE;
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` VALUES (1,'Administrador',1),(2,'Vendedor',1);
+INSERT INTO `perfil` VALUES (1,'Administrador',1);
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +256,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Diego','diegodamasceno16@gmail.com','trafford',1),(2,'Nilson','nilson@gmail.com','12345',2);
+INSERT INTO `usuarios` VALUES (1,'Diego','diegodamasceno16@gmail.com','trafford',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,4 +328,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-22 18:11:50
+-- Dump completed on 2019-02-15 12:56:14
