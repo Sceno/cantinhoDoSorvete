@@ -1,0 +1,125 @@
+
+
+<?php include_once("verificaSessao.php"); ?>
+
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+	<title>Login - Cantinho do Sorvete</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<p></p>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-55 p-b-20">
+				<form id="form" class="login100-form validate-form" method="post">
+					<span class="login100-form-title p-b-50">
+						Bem vindo!
+					</span>
+					<span class="login100-form-avatar">
+						<img src="images/avatar-01.jpg" alt="AVATAR">
+					</span>
+
+					<div class="wrap-input100 validate-input m-t-55 m-b-35" data-validate = "Informe o e-mail">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="e-mail"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Informe a senha">
+						<input class="input100" type="password" name="senha">
+						<span class="focus-input100" data-placeholder="senha"></span>
+					</div>
+				
+					<div class="msg-erro form-control m-t-50 m-b-50">
+                        <p></p>
+					</div>	
+					
+					<div class="container-login100-form-btn">
+						<button id="botao" class="login100-form-btn">
+							<span>LOGIN</span>
+						</button>
+					</div>
+                    
+					<p class="txt2">Esqueceu a senha?</p>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
+    
+    <script>
+        $('#form').submit(function(e){
+            e.preventDefault();
+			$('#botao').html('Aguarde...');
+			$('#botao').prop('disabled',true); //Estou desabilitando o botão para que o usuario não fique clicando e com isso fazendo multiplas requisções ao servidor. Após o resultado da requisição eu habilito novamente.
+
+            var dados = $('#form').serialize();
+            $.ajax({
+                type: "POST",
+                url: "php/login.php",
+                data: dados,
+                async: false
+            }).done(function(retorno) {
+                if (retorno){
+                    /* window.location.href = "php/home.html"; //Faz com que seja possivel clickar para trás na história do browser e ir para a página anterior */
+                    window.location.replace("index.php");   //Substituí a pagina atual e ao clickar para ir para trás na história, a página inicial não está acessível (foi substituída na história).
+                    /* window.open("php/home.html");           //O navegador abr uma janela nova (sem perder a janela de origem) */
+                }else{
+                    //alert("Login ou senha incorretos!");
+					$('.msg-erro').css('background-color','red').show();
+					$('.msg-erro p').css('color','white').show();
+					$('.msg-erro').show();
+                    $('.msg-erro p').html("E-mail ou senha incorretos!");
+                }    
+            }).fail(function() {    
+                alert( "Desculpe! Estamos com problemas técnicos. Por favor, tente mais tarde!" );
+            }).always(function(){
+				$('#botao').html('LOGIN');
+				$('#botao').prop('disabled',false);
+				$('.msg-erro').fadeOut(100, function(){
+					$('.msg-erro').css('background-color','white').show();
+					$('.msg-erro p').css('color','red').show();
+				});
+			});
+        });
+    </script>
+    
+</body>
+</html>

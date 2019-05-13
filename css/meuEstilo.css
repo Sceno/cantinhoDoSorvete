@@ -1,0 +1,19 @@
+#imgUsuario{
+    display:block; 
+    border-radius: 50%;
+    border: 1px solid black;
+    width:250px; 
+    height:250px; 
+    margin:auto;
+    cursor:pointer;
+}
+#upload{
+    /* Escondendo o botão de envio do arquivo, pois um label com uma tag de imagem dentro vai fazer esta função. */
+    width:0.1px;
+    height:0.1px;
+    opacity:0;
+    overflow:hidden;
+    position:absolute;
+    z-index:-1;
+    /*---------------------------------------*/
+}
